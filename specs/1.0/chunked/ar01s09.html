@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>9. Frequently Asked Questions</title><link rel="stylesheet" type="text/css" href="docbook-xsl.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Khronos Data Format Specification" /><link rel="up" href="index.html" title="Khronos Data Format Specification" /><link rel="prev" href="ar01s08.html" title="8. Extension for more complex formats" /><link rel="next" href="ar01s10.html" title="10. External references" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ar01s08.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ar01s10.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_frequently_asked_questions"></a>9. Frequently Asked Questions</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_why_have_a_binary_format_rather_than_a_human_readable_one"></a>9.1. Why have a binary format rather than a human-readable one?</h3></div></div></div><p>While it is not expected that every new container will have a unique
+data descriptor or that analysis of the data format descriptor will be
+on a critical path in an application, it is still expected that comparison
+between formats may be time-sensitive. The data format descriptor is designed
+to allow relatively efficient queries for subsets of properties, to allow
+a large number of format descriptors to be stored, and to be amenable to
+hardware interpretation or processing in shaders. These goals preclude a
+text-based representation such as an XML schema.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_why_not_use_an_existing_representation_such_as_those_on_fourcc_org"></a>9.2. Why not use an existing representation such as those on FourCC.org?</h3></div></div></div><p>Formats in FourCC.org do not describe in detail sufficient information for
+many APIs, and are sometimes inconsistent.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_why_have_a_descriptive_format"></a>9.3. Why have a descriptive format?</h3></div></div></div><p>Enumerations are fast and easy to process, but are limited in that any
+software can only be aware of the enumeration values in place when it
+was defined. Software often behaves differently according to properties
+of a format, and must perform a look-up on the enumeration — if it knows
+what it is — in order to change behaviours. A descriptive format allows
+for more flexible software which can support a wide range of formats
+without needing each to be listed, and simplifies the programming of
+conditional behaviour based on format properties.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_why_describe_this_standard_within_khronos"></a>9.4. Why describe this standard within Khronos?</h3></div></div></div><p>Khronos supports multiple standards that have a range of internal data
+representations. There is no requirement that this standard be used
+specifically with other Khronos standards, but it is hoped that multiple
+Khronos standards may use this specification as part of a consistent
+approach to inter-standard operation.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_why_should_i_use_this_format_if_i_don_8217_t_need_most_of_the_fields"></a>9.5. Why should I use this format if I don’t need most of the fields?</h3></div></div></div><p>While a library may not use all the data provided in the data format
+descriptor that is described within this standard, it is common for
+users of data — particularly pixel-like data — to have additional
+requirements. Capturing these requirements portably reduces the need
+for additional metadata to be associated with a proprietary descriptor.
+It is also common for additional functionality to be added retrospectively
+to existing libraries — for example, YUV support is often an afterthought
+in rendering APIs. Having a consistent and flexible representation in
+place from the start can reduce the pain of retrofitting this functionality.</p><p>Note that there is no expectation that the format descriptor from this
+standard be used directly, although it can be. The impact of providing
+a mapping between internal formats and format descriptors is expected
+to be low, but offers the opportunity both for simplified access from
+software outside the proprietary library and for reducing the effort
+needed to provide a complete, unambiguous and accurate description of a
+format in human-readable terms.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_why_not_expand_each_field_out_to_be_integer_for_ease_of_decoding"></a>9.6. Why not expand each field out to be integer for ease of decoding?</h3></div></div></div><p>There is a trade-off between size and decoding effort. It is assumed
+that data which occupies the same 32-bit word may need to be tested
+concurrently, reducing the cost of comparisons. When transferring
+data formats, the packing reduces the overhead. Within these constraints,
+it is intended that most data can be extracted with low-cost operations,
+typically being byte-aligned (other than sample flags) and with the
+natural alignment applied to multi-byte quantities.</p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_can_this_descriptor_be_used_for_text_content"></a>9.7. Can this descriptor be used for text content?</h3></div></div></div><p>For simple ASCII content, there is no reason that plain text could not be
+described in some way, and this may be useful for image formats that contain
+comment sections. However, since many multilingual text representations
+do not have a fixed character size, this use is not seen as an obvious match
+for this standard.</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ar01s08.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ar01s10.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

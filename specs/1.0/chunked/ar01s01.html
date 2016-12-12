@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>1. Introduction</title><link rel="stylesheet" type="text/css" href="docbook-xsl.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Khronos Data Format Specification" /><link rel="up" href="index.html" title="Khronos Data Format Specification" /><link rel="prev" href="index.html" title="Khronos Data Format Specification" /><link rel="next" href="ar01s02.html" title="2. Overview" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="index.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ar01s02.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_introduction"></a>1. Introduction</h2></div></div></div><p>Many APIs operate on bulk data — buffers, images, volumes, etc. — each
+composed of many elements with a fixed and often simple representation.
+Frequently, multiple alternative representations of data are supported:
+vertices can be represented with different numbers of dimensions,
+textures may have different bit depths and channel orders, and so on.
+Sometimes the representation of the data is highly specific to the
+application, but there are many types of data that are common to multiple
+APIs — and these can reasonably be described in a portable manner. In
+this standard, the term <span class="emphasis"><em>data format</em></span> describes the representation of
+data.</p><p>It is typical for each API to define its own enumeration of the
+data formats on which it can operate. This causes a problem when
+multiple APIs are in use: the representations are likely to be
+incompatible, even where the capabilities intersect. When additional
+format-specific capabilities are added to an API which was designed
+without them, the description of the data representation often
+becomes inconsistent and disjoint. Concepts that are unimportant to the
+core design of an API may be represented simplistically or inaccurately,
+which can be a problem as the API is enhanced or when data is shared.</p><p>Some APIs do not have a strict definition of how to interpret their
+data. For example, a rendering API may treat all color channels of
+a texture identically, leaving the interpretation of each channel to
+the user’s choice of convention. This may be true even if color channels
+are given names that are associated with actual colors — in some APIs,
+nothing stops the user from storing the blue quantity in the red channel
+and the red quantity in the blue channel. Without enforcing a single
+data interpretation on such APIs, it is nonetheless often useful to offer
+a clear definition of the color interpretation convention that is in force,
+both for code maintenance and for communication with external APIs which do
+have a defined intepretation. Should the user wish to use an unconventional
+interpretation of the data, an appropriate descriptor can be defined that
+is specific to this choice, in order to simplify automated interpretation
+of the chosen representation and to provide concise documentation.</p><p>Where multiple APIs are in use, relying on an API-specific representation
+as an intermediary can cause loss of important information. For example,
+a camera API may associate color space information with a captured image,
+and a printer API may be able to operate with that color space, but if the
+data is passed through an intermediate compute API for processing and that
+API has no concept of a color space, the useful information may be discarded.</p><p>The intent of this standard is to provide a common, consistent, machine-readable
+way to describe those data formats which are amenable to non-proprietary
+representation. This standard provides a portable means of storing the most
+common descriptive information associated with data formats, and an extension
+mechanism that can be used when this common functionality must be supplemented.</p><p>While this standard is intended to support the description of many kinds of
+data, the most common class of bulk data used in Khronos standards represents
+color information. For this reason, the range of standard color representations
+used in Khronos standards is diverse, and a significant portion of this
+specification is devoted to color formats.</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="index.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ar01s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

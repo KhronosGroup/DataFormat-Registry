@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>2. Overview</title><link rel="stylesheet" type="text/css" href="docbook-xsl.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Khronos Data Format Specification" /><link rel="up" href="index.html" title="Khronos Data Format Specification" /><link rel="prev" href="ar01s01.html" title="1. Introduction" /><link rel="next" href="ar01s03.html" title="3. Required concepts not contained in this format" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ar01s01.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ar01s03.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_overview"></a>2. Overview</h2></div></div></div><p>This document describes a standard layout for a data structure that can be
+used to define the representation of simple, portable, bulk data. Using such
+a data structure has the following benefits:</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+Ensuring a precise description of the portable data
+</li><li class="listitem">
+Simplifying the writing of generic functionality that acts on many types of data
+</li><li class="listitem">
+Offering portability of data between APIs
+</li></ul></div><p>The “bulk data” may be, for example:</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+Pixel/texel data
+</li><li class="listitem">
+Vertex data
+</li><li class="listitem">
+A buffer of simple type
+</li></ul></div><p>The layout of proprietary data structures is beyond the remit of this specification,
+but the large number of ways to describe colors, vertices and other repeated
+data makes standardization useful.</p><p>The data structure in this specification describes the elements in the bulk data,
+not the layout of the whole. For example, it may describe the size, location and
+interpretation of color channels within a pixel, but is not responsible for
+determining the mapping between spatial coordinates and the location of pixels
+in memory. That is, two textures which share the same pixel layout can share
+the same descriptor as defined in this specification, but may have different
+sizes, line strides, tiling or dimensionality.</p><div class="table"><a id="idp53602144"></a><p class="title"><strong>Table 1. A simple texel block — three channels representing one pixel</strong></p><div class="table-contents"><table summary="A simple texel block — three channels representing one pixel" cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; " width="30%"><colgroup><col class="col_1" /></colgroup><tbody><tr><td style="" align="left" valign="top"><div class="informaltable"><table cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; "><colgroup><col class="col_1" /><col class="col_2" /><col class="col_3" /></colgroup><tbody><tr><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>Red</p></td><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>Green</p></td><td style="" align="left" valign="top"><p>Blue</p></td></tr></tbody></table></div></td></tr></tbody></table></div></div><br class="table-break" /><p>In some cases, the elements of bulk texture data may not correspond to a
+conventional texel. For example, in a compressed texture it is common for
+the atomic element of the buffer to represent a rectangular block of
+texels. Alternatively the representation of the output of a camera may have
+a repeating pattern according to a Bayer or other layout. It is this repeating
+and self-contained atomic unit, termed a <span class="emphasis"><em>texel block</em></span>, that is described by this
+standard.</p><div class="table"><a id="idp51069920"></a><p class="title"><strong>Table 2. A simple Bayer-pattern texel block — three channels spread across 2×2 pixels</strong></p><div class="table-contents"><table summary="A simple Bayer-pattern texel block — three channels spread across 2×2 pixels" cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; " width="25%"><colgroup><col class="col_1" /><col class="col_2" /></colgroup><tbody><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><div class="informaltable"><table cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; "><colgroup><col class="col_1" /></colgroup><tbody><tr><td style="" align="left" valign="top"><p>Red</p></td></tr></tbody></table></div></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><div class="informaltable"><table cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; "><colgroup><col class="col_1" /></colgroup><tbody><tr><td style="" align="left" valign="top"><p>Green</p></td></tr></tbody></table></div></td></tr><tr><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><div class="informaltable"><table cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; "><colgroup><col class="col_1" /></colgroup><tbody><tr><td style="" align="left" valign="top"><p>Green</p></td></tr></tbody></table></div></td><td style="" align="left" valign="top"><div class="informaltable"><table cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; "><colgroup><col class="col_1" /></colgroup><tbody><tr><td style="" align="left" valign="top"><p>Blue</p></td></tr></tbody></table></div></td></tr></tbody></table></div></div><br class="table-break" /><p>The sampling or reconstruction of texel data is not a function of the data
+format. That is, a texture has the same format whether it is point sampled
+or a bicubic filter is used, and the manner of reconstructing full color data
+from a camera sensor is not defined. Where information making up the data format
+has a spatial aspect, this is part of the descriptor: it is part of the
+descriptor to define the spatial configuration of color samples in a Bayer sensor
+or whether the chroma difference channels in a YUV format are considered to be
+centred or co-sited, but not how this information must be used to generate
+coordinate-aligned full color values.</p><p>The data structure defined in this specification is termed a
+<span class="emphasis"><em><a class="link" href="ar01s05.html#dataformatdescriptor">data format descriptor</a></em></span>.
+This is an extensible block of contiguous memory, with a defined layout. The
+size of the data format descriptor depends on its content, but is also stored
+in a field at the start of the descriptor, making it possible to copy the
+data structure without needing to interpret all possible contents.</p><p>The data format descriptor is divided into one or more <span class="emphasis"><em><a class="link" href="ar01s06.html#descriptorblock">descriptor blocks</a></em></span>,
+each also consisting of contiguous data. These descriptor blocks may, themselves,
+be of different sizes, depending on the data contained within. The size of a
+descriptor block is stored as part of its data structure, allowing applications
+to process a data format descriptor while skipping contained descriptor blocks
+that it does not need to understand. The data format descriptor mechanism is
+extensible by the addition of new descriptor blocks.</p><div class="table"><a id="idp50995392"></a><p class="title"><strong>Table 3. Data format descriptor and descriptor blocks</strong></p><div class="table-contents"><table summary="Data format descriptor and descriptor blocks" cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; " width="75%"><colgroup><col class="col_1" /></colgroup><tbody><tr><td style="" align="left" valign="top"><pre class="literallayout">Data format descriptor</pre>
+<div class="informaltable"><table cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; " width="100%"><colgroup><col class="col_1" /></colgroup><tbody><tr><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>Descriptor block 1</p></td></tr><tr><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>Descriptor block 2</p></td></tr><tr><td style="" align="left" valign="top"><p>:</p></td></tr></tbody></table></div></td></tr></tbody></table></div></div><br class="table-break" /><p>The diversity of possible data makes a concise description that can support
+every possible format impractical. This document describes one type of
+descriptor block, a <span class="emphasis"><em><a class="link" href="ar01s07.html#basicdescriptor">basic descriptor block</a></em></span>, that is
+expected to be the first descriptor block inside the data format descriptor
+where present, and which is sufficient for a large number of common formats,
+particularly for pixels. Formats which cannot be described within this scheme
+can use additional descriptor blocks of other types as necessary.</p><div class="glossary"><div class="titlepage"><div><div><h3 class="title"><a id="_glossary"></a>Glossary</h3></div></div></div><p><span class="strong"><strong>Data format</strong></span>
+The interpretation of individual elements in bulk data. Examples
+include the channel ordering and bit positions in pixel data or
+the configuration of samples in a Bayer image. The format describes
+the elements, not the bulk data itself: an image’s size, stride, tiling,
+dimensionality, border control modes, and image reconstruction filter are
+not part of the format and are the responsibility of the application.</p><p><span class="strong"><strong><a class="link" href="ar01s05.html#dataformatdescriptor">Data format descriptor</a></strong></span>
+A contiguous block of memory containing information about how data is
+represented, in accordance with this specification. A data format
+descriptor is a container, within which can be found one or more
+descriptor blocks. This specification does not define where or how
+the the data format descriptor should be stored, only its content.
+For example, the descriptor may be directly prepended to the bulk
+data, perhaps as part of a file format header, or the descriptor may
+be stored in a CPU memory while the bulk data that it describes resides
+within GPU memory; this choice is application-specific.</p><p><span class="strong"><strong><a class="link" href="ar01s06.html#descriptorblock">(Data format) descriptor block</a></strong></span>
+A contiguous block of memory with a defined layout, held within a
+data format descriptor. Each descriptor block has a common header
+that allows applications to identify and skip descriptor blocks
+that it does not understand, while continuing to process any other
+descriptor blocks that may be held in the data format descriptor.</p><p><span class="strong"><strong><a class="link" href="ar01s07.html#basicdescriptor">Basic (data format) descriptor block</a></strong></span>
+The initial form of descriptor block as described in this standard.
+Where present, it must be the first descriptor block held in the
+data format descriptor. This descriptor block can describe a large
+number of common formats and may be the only type of descriptor block
+that many portable applications will need to support.</p><p><span class="strong"><strong>Texel block</strong></span>
+The units described by the Basic Data Format Descriptor: a repeating
+element within bulk data. In simple texture formats, a texel
+block may describe a single pixel. In formats with subsampled
+channels, the texel block may describe several pixels. In a
+block-based compressed texture, the texel block typically describes
+the compression block unit. The basic descriptor block supports
+texel blocks of up to four dimensions.</p><p><span class="strong"><strong><a class="link" href="ar01s07.html#sample">Sample</a></strong></span>
+In this standard, texel blocks are considered to be composed of
+contiguous bit patterns with a single channel or component type and
+a single spatial location. A typical ARGB pixel has four samples,
+one for each channel, held at the same coordinate. A texel block
+from a Bayer sensor might have a different location for different
+channels, and may have multiple samples representing the same channel
+at multiple locations. A YUV buffer with downsampled chroma may have
+more luma sample than chroma, each at different locations.</p><p><span class="strong"><strong>Plane</strong></span>
+In some formats, a texel block is not contiguous in
+memory. In a two-dimensional texture, the texel block may be
+spread across multiple scan lines, or channels may be stored
+independently. The basic format descriptor block defines a
+texel block as being made of a number of concatenated bits which
+may come from different regions of memory, where each region is
+considered a separate <span class="emphasis"><em>plane</em></span>. For common formats, it is sufficient
+to require that the contribution from each plane is an integer
+number of bytes. This specification places no requirements on
+the ordering of planes in memory — the plane locations are
+described outside the format. This allows support for multiplanar
+formats which have proprietary padding requirements that are hard
+to accommodate in a more terse representation.</p><p>In many existing APIs, planes may be “downsampled” differently.
+For example, in these APIs, a <a class="link" href="ar01s02.html#yuv420">YUV4:2:0</a> buffer would typically be
+<a class="link" href="ar01s02.html#yuv420conventional">represented</a> with three planes, one for each channel, with the luma
+plane four times larger than the chroma planes, and with two lines of
+the luma held within the same plane. This approach does not extend
+logically to more complex formats such as a Bayer grid. Therefore
+in this specification, we would <a class="link" href="ar01s02.html#yuv420thisapi">instead</a> define the luma channel using two
+planes, vertically interleaved, with each line contiguous (the chroma
+channels remain one each). There is no expectation that the internal format
+used by an API that wishes to make use of the Khronos Data Format Specification
+must use this specification’s representation internally: reconstructing
+downsampling information from this standard’s representation in order to
+revert to the more conventional representation should be trivial if required.</p><div class="table"><a id="idp57037584"></a><p class="title"><strong>Table 4. <a id="yuv420"></a>Possible memory representation of a 4×4 YUV4:2:0 buffer (numbers are byte offsets)</strong></p><div class="table-contents"><table summary="Possible memory representation of a 4×4 YUV4:2:0 buffer (numbers are byte offsets)" cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; " width="20%"><colgroup><col class="col_1" /></colgroup><tbody><tr><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><pre class="literallayout">Y channel</pre></td></tr><tr><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><div class="informaltable"><table cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; "><colgroup><col class="col_1" /><col class="col_2" /><col class="col_3" /><col class="col_4" /></colgroup><tbody><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>0</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>1</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>2</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>3</p></td></tr><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>4</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>5</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>6</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>7</p></td></tr><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>8</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>9</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>10</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>11</p></td></tr><tr><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>12</p></td><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>13</p></td><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>14</p></td><td style="" align="left" valign="top"><p>15</p></td></tr></tbody></table></div></td></tr><tr><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><pre class="literallayout">U channel</pre></td></tr><tr><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><div class="informaltable"><table cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; "><colgroup><col class="col_1" /><col class="col_2" /></colgroup><tbody><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>16</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>17</p></td></tr><tr><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>18</p></td><td style="" align="left" valign="top"><p>19</p></td></tr></tbody></table></div></td></tr><tr><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><pre class="literallayout">V channel</pre></td></tr><tr><td style="" align="left" valign="top"><div class="informaltable"><table cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; "><colgroup><col class="col_1" /><col class="col_2" /></colgroup><tbody><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>20</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>21</p></td></tr><tr><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>22</p></td><td style="" align="left" valign="top"><p>23</p></td></tr></tbody></table></div></td></tr></tbody></table></div></div><br class="table-break" /><div class="table"><a id="idp57090016"></a><p class="title"><strong>Table 5. <a id="yuv420conventional"></a>Plane descriptors for the above YUV format buffer in a conventional API</strong></p><div class="table-contents"><table summary="Plane descriptors for the above YUV format buffer in a conventional API" cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; " width="70%"><colgroup><col class="col_1" /><col class="col_2" /><col class="col_3" /><col class="col_4" /></colgroup><tbody><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>Y plane</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>offset 0</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>byte stride 4</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>downsample 1×1</p></td></tr><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>U plane</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>offset 16</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>byte stride 2</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>downsample 2×2</p></td></tr><tr><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>V plane</p></td><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>offset 20</p></td><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>byte stride 2</p></td><td style="" align="left" valign="top"><p>downsample 2×2</p></td></tr></tbody></table></div></div><br class="table-break" /><div class="table"><a id="idp57109888"></a><p class="title"><strong>Table 6. <a id="yuv420thisapi"></a>Plane descriptors for the above YUV format buffer using this standard</strong></p><div class="table-contents"><table summary="Plane descriptors for the above YUV format buffer using this standard" cellpadding="4px" style="border-collapse: collapse;border-top: 3px solid #527bbd; border-bottom: 3px solid #527bbd; border-left: 3px solid #527bbd; border-right: 3px solid #527bbd; " width="60%"><colgroup><col class="col_1" /><col class="col_2" /><col class="col_3" /><col class="col_4" /></colgroup><tbody><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>Y plane 1</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>offset 0</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>byte stride 8</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>plane bytes 2</p></td></tr><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>Y plane 2</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>offset 4</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>byte stride 8</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>plane bytes 2</p></td></tr><tr><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>U plane</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>offset 16</p></td><td style="border-right: 1px solid #527bbd; border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>byte stride 2</p></td><td style="border-bottom: 1px solid #527bbd; " align="left" valign="top"><p>plane bytes 1</p></td></tr><tr><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>V plane</p></td><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>offset 20</p></td><td style="border-right: 1px solid #527bbd; " align="left" valign="top"><p>byte stride 2</p></td><td style="" align="left" valign="top"><p>plane bytes 1</p></td></tr></tbody></table></div></div><br class="table-break" /><p>There is no requirement that the number of bytes occupied by the
+texel block be the same in each plane. The descriptor defines the
+number of bytes that the texel block occupies in each plane,
+which for most formats is sufficient to allow access to consecutive
+elements. For a two-dimensional data structure, it is up to the
+controlling interface to resolve byte stride between consecutive lines.
+For a three-dimensional structure, the controlling API may need to add
+a level stride. Since these strides are determined by the data size
+and architecture alignment requirements, they are not considered to be
+part of the format.</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ar01s01.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ar01s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

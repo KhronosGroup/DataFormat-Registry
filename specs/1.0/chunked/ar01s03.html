@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>3. Required concepts not contained in this format</title><link rel="stylesheet" type="text/css" href="docbook-xsl.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Khronos Data Format Specification" /><link rel="up" href="index.html" title="Khronos Data Format Specification" /><link rel="prev" href="ar01s02.html" title="2. Overview" /><link rel="next" href="ar01s04.html" title="4. Translation to API-specific data format representations" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ar01s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ar01s04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_required_concepts_not_contained_in_this_format"></a>3. Required concepts not contained in this format</h2></div></div></div><p>This specification encodes how atomic data should be interpreted in a manner which is
+independent of the layout and dimensionality of the collective data. Collections
+of data may have a “compatible format” in that their format descriptor may be
+identical, yet be different sizes. Some additional information is therefore
+expected to be recorded alongside the “format description”.</p><p>The API which controls the bulk data is responsible for controlling which memory
+location corresponds to the indexing mechanism chosen. A texel block has the
+concept of a coordinate offset within the block, which implies that if the data
+is accessed in terms of spatial coordinates, a texel block has spatial locality
+as well as referring to contiguous memory (per plane). For texel blocks which
+represent only a single spatial location, this is irrelevant; for block-based
+compression, for formats with downsampled channels, or for Bayer-like formats, the
+texel block represents a finite extent in up to four dimensions. However, the mapping
+from coordinate system to the memory location containing a texel block is beyond the
+control of this API.</p><p>The minimum requirements for accessing a linearly-addressed buffer is to
+store the start address and a stride (typically in bytes) between texels in
+each dimension of the buffer, for each plane contributing to the texel block.
+For the first dimension, the memory stride between texels may simply be the
+byte size of texel block in that plane — this implies that there are no
+gaps between texel blocks. For other dimensions, the stride is a function
+of the size of the data structure being represented — for example, in a compact
+representation of a two-dimensional buffer, the texel block at coordinate (x,y+1)
+might be found at the address of coordinate (x,y) plus the buffer width multiplied
+by the texel size in bytes. Similarly in a three-dimensional buffer, the address
+of the pixel at (x,y,z+1) may be at the address of (x,y,z) plus the byte size of
+a two-dimensional slice of the texture. In practice, even linear layouts may have
+padding, and often more complex relationships between coordinates and memory
+location are used to encourage locality of reference. The details of all of these
+data structures are beyond the remit of this specification.</p><p>Most simple formats contain a single <span class="emphasis"><em>plane</em></span> of data. Those formats
+which require additional planes compared with a conventional
+representation are typically downsampled YUV formats, which already
+have the concept of separate storage for different color channels.
+While this specification uses multiple planes to describe texel
+blocks that span multiple scan lines if the data is disjoint, there is
+no expectation that the API using the data formats needs to maintain
+this representation — interleaved planes should be easy to identify
+and coalesce if the API requires a more conventional representation of
+downsampled formats.</p><p>Some image representations are composed of tiles of texels which are
+held contiguously in memory, with the texels within the tile stored in
+some order that improves locality of reference for multi-dimensional
+access. This is a common approach to improve memory efficiency when
+texturing. While it is possible to represent such a tile as a large
+texel block (up to the maximum representable texel block size in this
+specification), this is unlikely to be an efficient approach, since
+a large number of samples will be needed and the layout of a tile
+usually has a very limited number of possibilities. In most cases,
+the layout of texels within the tile should be described by whatever
+interface is aware of image-specific information such as size and stride,
+and only the format of the texels should be described by a format descriptor.</p><p>The complication to this is where texel blocks larger than a single pixel
+are themselves encoded using proprietary tiling. The spatial layout of
+samples within a texel block is required to be fixed in the basic format
+descriptor — for example, if the texel block size is 2×2 pixels, the
+top left pixel might always be expected to be in the first byte in that
+texel block. In some proprietary memory tiling formats, such as ones
+that store small rectangular blocks in raster order in consecutive bytes
+or in Morton order, this relationship may be preserved, and the only proprietary
+operation is finding the start of the texel block. In other proprietary
+layouts such as Hilbert curver order, or when the texel block size does
+not divide the tiling size, a direct representation of memory may be
+impossible. In these cases, it is likely that this data format standard
+would be used to describe the data as it would be seen in a linear format,
+and the mapping from coordinates to memory would have to be hidden in
+proprietary translation. As a logical format description, this is unlikely
+to be critical, since any software which accesses such a layout will
+necessarily need proprietary knowledge anyway.</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ar01s02.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ar01s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

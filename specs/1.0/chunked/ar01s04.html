@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>4. Translation to API-specific data format representations</title><link rel="stylesheet" type="text/css" href="docbook-xsl.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Khronos Data Format Specification" /><link rel="up" href="index.html" title="Khronos Data Format Specification" /><link rel="prev" href="ar01s03.html" title="3. Required concepts not contained in this format" /><link rel="next" href="ar01s05.html" title="5. Data format descriptor" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ar01s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ar01s05.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_translation_to_api_specific_data_format_representations"></a>4. Translation to API-specific data format representations</h2></div></div></div><p>The data format container described here is too unwieldy to be expected to
+be used directly in most APIs. The expectation is that APIs and users will
+define data descriptors in memory, but have API-specific names for the
+formats that the API supports. If these names are enumeration values, a
+mapping can be provided by having an array of pointers to the data descriptors,
+indexed by the enumeration. It may commonly be necessary to provide API-specific
+supplementary information in the same array structure, particularly where the
+API natively associates concepts with the data which is not uniquely
+associated with the content.</p><p>In this approach, it is likely that an API would predefine a number of
+common data formats which are natively supported. If there is a desire
+to support dynamic creation of data formats, this array could be made
+extensible with a manager returning handles.</p><p>Even where an API supports only a fixed set of formats, it is flexible
+to provide a comparison with user-provided format descriptors in order
+to establish whether a format is compatible.</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ar01s03.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ar01s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>
