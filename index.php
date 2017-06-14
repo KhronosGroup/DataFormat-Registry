@@ -18,7 +18,7 @@ include_once("../../assets/static_pages/khr_page_top.php");
 
 <h6> Core Data Format Specification and Headers </h6>
 
-<p> The current version is 1.1 revision 6, June, 2016. </p>
+<p> The current version is 1.1 revision 8, June, 2017. </p>
 
 <ul>
 <li> <a href="specs/1.1/dataformat.1.1.html"> Khronos Data Format 1.1
