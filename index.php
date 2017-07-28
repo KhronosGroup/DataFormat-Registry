@@ -1,16 +1,8 @@
 <?php
 $static_title = 'Khronos Data Format Specification Registry';
-$static_breadcrumb = array(
-    '/registry/' => 'Registry',
-    'NOLINK' => 'Khronos Data Format Specification Registry'
-);
+
 include_once("../../assets/static_pages/khr_page_top.php");
 ?>
-
-<h1 class="pagetitle">Khronos Data Format Specification Registry</h1>
-<div id="mainformat">
-
-<h1 style="text-align:center"> Khronos Data Format Specification Registry </h1>
 
 <p> The Khronos Data Format Specification registry contains the
     specification of the Khronos data format descriptor structure and
