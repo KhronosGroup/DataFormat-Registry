@@ -13,7 +13,7 @@ include_once("../../assets/static_pages/khr_page_top.php");
 <h2>Current core Khronos Data Format Specification and Headers</h2>
 
 <ul>
-<li> <b>Khronos Data Format Specification version 1.2 revision 0, updated September 2017</b> <br />
+<li> <b>Khronos Data Format Specification version 1.2 revision 1, March 2019</b> <br />
    <ul>
      <li> <a href="specs/1.2/dataformat.1.2.pdf">Specification as PDF</a> </li>
      <li> <a href="specs/1.2/dataformat.1.2.html">Specification as HTML</a>
@@ -39,12 +39,16 @@ include_once("../../assets/static_pages/khr_page_top.php");
 <h2>Older core Khronos Data Format Specification and Headers</h2>
 
 <ul>
-  <li> <b>Khronos Data Format Specification version 1.1 revision 8, June 2017</b> <br />
+  <li> <b>Khronos Data Format Specification version 1.1 revision 9, March 2019</b> <br />
      <ul>
      <li> <a href="specs/1.1/dataformat.1.1.pdf">Specification as PDF </a> </li>
      <li> <a href="specs/1.1/dataformat.1.1.html">Specification as HTML</a> for online browsing </li>
      <li> <a href="specs/1.1/dataformat.1.1.html.zip">Specification as HTML zip file</a>
-          containing all referenced images for download<br />
+          containing all referenced images for download</li>
+     <li> <a href="specs/1.1/dataformat.1.1.inline.html">Specification as HTML single file with inline images</a>
+          for ease of sharing</li>
+     <li> <a href="specs/1.1/dataformat.1.1.inline.html.zip">Specification as zipped HTML single file with inline images</a>
+          for sharing at reduced size <br />
           <ul>
               <li><b>Note:</b> HTML versions of the Khronos Data Format Specification 1.1
                 rely on access to <a href="http://www.mathjax.org">MathJax</a> to
@@ -53,7 +57,7 @@ include_once("../../assets/static_pages/khr_page_top.php");
           </ul></li>
      <li> <a href="api/1.1/khr_df.h"> Header file</a> <tt>(khr_df.h)</tt> </li>
      </ul></li>
-  <li> <b>Khronos Data Format Specification version 1.0 revision 4, July 2015</b> <br />
+  <li> <b>Khronos Data Format Specification version 1.0 revision 5, March 2019</b> <br />
      <ul>
      <li> <a href="specs/1.0/dataformat.1.0.pdf">Specification as PDF</a> </li>
      <li> <a href="specs/1.0/dataformat.1.0.html">Specification as HTML</a>

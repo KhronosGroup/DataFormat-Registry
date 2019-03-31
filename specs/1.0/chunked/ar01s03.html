@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>3. Required concepts not contained in this format</title><link rel="stylesheet" type="text/css" href="docbook-xsl.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Khronos Data Format Specification" /><link rel="up" href="index.html" title="Khronos Data Format Specification" /><link rel="prev" href="ar01s02.html" title="2. Overview" /><link rel="next" href="ar01s04.html" title="4. Translation to API-specific data format representations" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ar01s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ar01s04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_required_concepts_not_contained_in_this_format"></a>3. Required concepts not contained in this format</h2></div></div></div><p>This specification encodes how atomic data should be interpreted in a manner which is
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>3. Required concepts not contained in this format</title><link rel="stylesheet" type="text/css" href="docbook-xsl.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Khronos Data Format Specification" /><link rel="up" href="index.html" title="Khronos Data Format Specification" /><link rel="prev" href="ar01s02.html" title="2. Overview" /><link rel="next" href="ar01s04.html" title="4. Translation to API-specific data format representations" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ar01s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ar01s04.html">Next</a></td></tr></table><hr /></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="_required_concepts_not_contained_in_this_format"></a>3. Required concepts not contained in this format</h2></div></div></div><p>This specification encodes how atomic data should be interpreted in a manner which is
 independent of the layout and dimensionality of the collective data. Collections
 of data may have a “compatible format” in that their format descriptor may be
 identical, yet be different sizes. Some additional information is therefore
@@ -19,16 +19,16 @@ For the first dimension, the memory stride between texels may simply be the
 byte size of texel block in that plane — this implies that there are no
 gaps between texel blocks. For other dimensions, the stride is a function
 of the size of the data structure being represented — for example, in a compact
-representation of a two-dimensional buffer, the texel block at coordinate (x,y+1)
-might be found at the address of coordinate (x,y) plus the buffer width multiplied
+representation of a two-dimensional buffer, the texel block at coordinate (<span class="emphasis"><em>x</em></span>,<span class="emphasis"><em>y</em></span>+1)
+might be found at the address of coordinate (<span class="emphasis"><em>x</em></span>,<span class="emphasis"><em>y</em></span>) plus the buffer width multiplied
 by the texel size in bytes. Similarly in a three-dimensional buffer, the address
-of the pixel at (x,y,z+1) may be at the address of (x,y,z) plus the byte size of
+of the pixel at (<span class="emphasis"><em>x</em></span>,<span class="emphasis"><em>y</em></span>,<span class="emphasis"><em>z</em></span>+1) may be at the address of (<span class="emphasis"><em>x</em></span>,<span class="emphasis"><em>y</em></span>,<span class="emphasis"><em>z</em></span>) plus the byte size of
 a two-dimensional slice of the texture. In practice, even linear layouts may have
 padding, and often more complex relationships between coordinates and memory
 location are used to encourage locality of reference. The details of all of these
 data structures are beyond the remit of this specification.</p><p>Most simple formats contain a single <span class="emphasis"><em>plane</em></span> of data. Those formats
-which require additional planes compared with a conventional
-representation are typically downsampled YUV formats, which already
+which require additional planes compared with a conventional representation
+are typically downsampled <span class="emphasis"><em>Y′C<sub>B</sub>C<sub>R</sub></em></span> formats, which already
 have the concept of separate storage for different color channels.
 While this specification uses multiple planes to describe texel
 blocks that span multiple scan lines if the data is disjoint, there is
