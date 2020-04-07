@@ -13,7 +13,7 @@ include_once("../../assets/static_pages/khr_page_top.php");
 <h2>Current core Khronos Data Format Specification and Headers</h2>
 
 <ul>
-<li> <b>Khronos Data Format Specification version 1.3, October 2019</b> <br />
+<li> <b>Khronos Data Format Specification version 1.3.1, April 2020</b> <br />
    <ul>
      <li> <a href="specs/1.3/dataformat.1.3.pdf">Specification as PDF</a> </li>
      <li> <a href="specs/1.3/dataformat.1.3.html">Specification as HTML</a>
