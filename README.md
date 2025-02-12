@@ -7,6 +7,11 @@ It is also used as a backing store for the web view of the registry at
 https://www.khronos.org/registry/dataformat/ ; commits to the main branch of this
 repository will be reflected there.
 
+Requests for changes to the Khronos Data Format Specification should
+be submitted to https://github.com/KhronosGroup/DataFormat (or to
+the corresponding repository inside Khronos); the DataFormat-Registry
+repo only handles the final registry presentation.
+
 **NOTE**: as of 2021-08-09, the default branch of this repository has
 been renamed from 'master' to 'main'.
 
